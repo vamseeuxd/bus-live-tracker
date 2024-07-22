@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/no-negated-async -->
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -9,7 +10,57 @@
 </ion-header>
 
 <ion-content>
-  <div class="login-logo">
+  <ion-grid style="height: 100%">
+    <ion-row
+      class="ion-justify-content-center ion-align-items-center"
+      style="height: 100%"
+    >
+      <ion-col size-lg="4" size-md="6" size-sm="8" size-xs="10">
+        <ion-card *ngIf="(authService.user$ | async) as user">
+          <ion-card-header>
+            <ion-item lines="none">
+              <ion-thumbnail slot="start">
+                <img
+                  *ngIf="user.photoURL"
+                  [src]="user.photoURL"
+                  alt="User Photo"
+                  style="width: 50px; height: 50px; border-radius: 50%"
+                />
+              </ion-thumbnail>
+              <ion-text>
+                <h6>{{ user.displayName | titlecase }}</h6>
+                <p>{{ user.email }}</p>
+                <small>UID : {{ user.uid }}</small>
+              </ion-text>
+            </ion-item>
+          </ion-card-header>
+        </ion-card>
+        <ion-button
+          *ngIf="!(authService.user$ | async); else loggedIn"
+          (click)="loginWithGoogle()"
+          color="danger"
+          expand="block"
+          class="ion-margin-top"
+        >
+          <ion-icon name="logo-google" class="ion-margin-end"></ion-icon> Google
+          Login
+        </ion-button>
+        <ng-template #loggedIn>
+          <ion-button
+            (click)="logout()"
+            color="danger"
+            expand="block"
+            class="ion-margin-top"
+          >
+            <ion-icon name="logo-google" class="ion-margin-end"></ion-icon>
+            Logout
+          </ion-button>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <div class="login-logo">
     <img src="assets/img/appicon.svg" alt="Ionic logo">
   </div>
 
@@ -50,6 +101,5 @@
         </ion-col>
       </ion-row>
     </form>
-  </div>
-
+  </div> -->
 </ion-content>
