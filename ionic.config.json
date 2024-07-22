@@ -1,0 +1,7 @@
+{
+  "name": "bus-live-tracker",
+  "type": "angular",
+  "integrations": {
+    "capacitor": {}
+  }
+}
