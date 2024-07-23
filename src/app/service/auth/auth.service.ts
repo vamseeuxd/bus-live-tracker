@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { User } from "firebase/auth";
 import { AlertController } from "@ionic/angular";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { ToastService } from "../toast/toast.service";
 
 @Injectable({
   providedIn: "root",
@@ -14,6 +15,7 @@ export class AuthService {
 
   constructor(
     private afAuth: AngularFireAuth,
+    public toastService: ToastService,
     private alertController: AlertController
   ) {}
 
@@ -76,9 +78,33 @@ export class AuthService {
     });
   }
 
+  async changeDisplayName(displayName: string): Promise<void> {
+    const user = this.afAuth.currentUser;
+    if (user) {
+      try {
+        await (await user).updateProfile({ displayName });
+        this.toastService.presentSuccessToast(
+          "Your display name has been updated."
+        );
+      } catch (error) {
+        this.toastService.presentErrorToast(
+          "Error updating display name:" + error
+        );
+      }
+    } else {
+      this.toastService.presentErrorToast("No user is currently logged in");
+    }
+  }
+
   async resetPassword(email: string): Promise<void> {
     try {
       await this.afAuth.sendPasswordResetEmail(email);
+      const alert = await this.alertController.create({
+        header: "Reset Password",
+        message: "Password reset email sent!",
+        buttons: [{ text: "Ok" }],
+      });
+      await alert.present();
     } catch (error) {
       console.error("Error during password reset:", error);
     }
