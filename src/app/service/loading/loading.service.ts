@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { LoadingController } from "@ionic/angular";
+import { LoadingController, LoadingOptions, SpinnerTypes } from "@ionic/angular";
 
 @Injectable({
   providedIn: "root",
@@ -10,12 +10,14 @@ export class LoadingService {
 
   constructor(private loadingController: LoadingController) {}
 
-  async showLoader(message?: string) {
+  async showLoader(
+    message = "Please Wait...",
+    spinner: SpinnerTypes = "bubbles"
+  ) {
     if (this.requestCount === 0) {
       this.loading = await this.loadingController.create({
-        message: message || "Please Wait...",
-        spinner: "bubbles", // or any other spinner
-        // Add other customization options as needed
+        message: message,
+        spinner,
       });
       await this.loading.present();
     }

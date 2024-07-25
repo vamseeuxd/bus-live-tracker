@@ -206,6 +206,7 @@
   },
   "cli": {
     "schematicCollections": [
+      "@ionic/angular-toolkit",
       "@cypress/schematic",
       "@angular-eslint/schematics",
       "@schematics/angular"

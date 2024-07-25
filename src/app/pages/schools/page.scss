@@ -1,0 +1,33 @@
+.details-item {
+  position: relative; /* Ensures that the absolutely positioned buttons are relative to this container */
+  padding: 10px;
+  background-color: var(--ion-background-color); /* Adapts to light and dark themes */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.button-column {
+  position: absolute;
+  right: 10px; /* Adjust this value as needed */
+  top: 50%; /* Vertically center the buttons */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between the buttons */
+}
+
+.action-button {
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.edit-button {
+  color: var(--ion-color-success); /* Adapts to the theme */
+  --color: var(--ion-color-success); /* Ensure color adapts to light and dark themes */
+}
+
+.delete-button {
+  color: var(--ion-color-danger); /* Adapts to the theme */
+  --color: var(--ion-color-danger); /* Ensure color adapts to light and dark themes */
+}

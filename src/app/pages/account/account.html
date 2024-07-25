@@ -9,16 +9,16 @@
 
 <ion-content>
   <div  *ngIf="(authService.user$ | async) as user" class="ion-padding-top ion-text-center">
-    <img [src]="user.photoURL" alt="avatar">
+    <img *ngIf="user.photoURL" [src]="user.photoURL" alt="avatar">
     <h2>Display Name : {{user.displayName}}</h2>
     <p>Email : {{user.email}}</p>
     <p>Uid : {{user.uid}}</p>
 
     <ion-list inset>
-      <ion-item (click)="updatePicture()">Update Picture</ion-item>
+      <!-- <ion-item (click)="updatePicture()">Update Picture</ion-item> -->
       <ion-item (click)="changeUsername()">Change Display Name</ion-item>
       <ion-item (click)="changePassword(user.email)">Change Password</ion-item>
-      <ion-item (click)="support()">Support</ion-item>
+      <!-- <ion-item (click)="support()">Support</ion-item> -->
       <ion-item (click)="logout()">Logout</ion-item>
     </ion-list>
   </div>

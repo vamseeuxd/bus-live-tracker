@@ -40,6 +40,10 @@ export class AppComponent implements OnInit {
       url: "/app/tabs/about",
       icon: "information-circle",
     },
+    { title: "Schools", url: "/app/tabs/schools", icon: "information-circle", },
+    { title: "Buses", url: "/app/tabs/buses", icon: "information-circle", },
+    { title: "Stops", url: "/app/tabs/stops", icon: "information-circle", },
+    { title: "Students", url: "/app/tabs/students", icon: "information-circle", },
   ];
   loggedIn = false;
   dark = false;
